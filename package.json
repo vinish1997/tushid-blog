@@ -1,0 +1,24 @@
+{
+  "name": "tushid-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinish1997/tushid-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vinish1997/tushid-blog/issues"
+  },
+  "homepage": "https://github.com/vinish1997/tushid-blog#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
