@@ -1,11 +1,15 @@
 import User from '../models/user.model.js';
 import bcryptjs from 'bcryptjs';
+import { errorHandler } from '../utils/error.js';
 
-export const signup = async (req, res) => {
+const MANDATORY_FIELD_ERROR = 'All fields are mandatory';
+const USER_ALREADY_EXIST_ERROR = 'User already exist with same ';
+
+export const signup = async (req, res, next) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password || username === '' || email === '' || password === '') {
-        return res.status(400).json({ message: 'All fields are required !!!' });
+        next(errorHandler(400, MANDATORY_FIELD_ERROR));
     }
 
     const hashPassword = bcryptjs.hashSync(password, 10);
@@ -20,9 +24,9 @@ export const signup = async (req, res) => {
         res.status(201).json({ message: 'User is successfully created' })
     } catch (error) {
         if (error.code === 11000) {
-            res.status(400).json({ message: 'User already exist with same ' + Object.keys(error.keyPattern) })
+            next(errorHandler(400, USER_ALREADY_EXIST_ERROR + Object.keys(error.keyPattern)));
         } else {
-            res.status(500).json({ message: error.message })
+            next(error);
         }
     }
 
