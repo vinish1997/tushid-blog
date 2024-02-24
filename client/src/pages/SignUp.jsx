@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function SignOut() {
+export default function SignUp() {
   return (
     <div>SignOut</div>
   )
