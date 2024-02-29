@@ -7,6 +7,7 @@ import {
   signInFailure,
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import OAuth from "../components/OAuth";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -34,11 +35,13 @@ export default function SignIn() {
       }
       if (res.status === 200) {
         dispatch(signInSuccess(data));
+        setFormData({});
         navigate("/");
       }
     } catch (error) {
       dispatch(signInFailure(error.message));
     }
+    setFormData({});
   };
   return (
     <div className="min-h-screen mt-20">
@@ -83,6 +86,7 @@ export default function SignIn() {
                 "Sign In"
               )}
             </Button>
+            <OAuth />
             <div className="flex gap-2 text-sm mt-5">
               <span>Don't Have an account? </span>
               <Link to="/sign-up" className="text-blue-500">
