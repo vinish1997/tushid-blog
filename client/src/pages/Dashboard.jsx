@@ -20,7 +20,7 @@ export default function Dashboard() {
         <DashboardSidebar />
       </div>
       {/* Profile */}
-      <div className="">{tab === "profile" && <DashboardProfile />}</div>
+      {tab === "profile" && <DashboardProfile />}
     </div>
   );
 }
