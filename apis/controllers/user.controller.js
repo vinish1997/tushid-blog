@@ -8,6 +8,7 @@ const USERNAME_SPECIAL_CHARACTER_ERROR =
   "Username can only contain letters and numbers";
 const USERNAME_SPACE_ERROR = "Username cannot contains spaces";
 const USERNAME_UPPERCASE_ERROR = "Username must be only lower case";
+const USER_DELETE_MESSAGE = "User has been deleted";
 
 export const update = async (req, res, next) => {
   if (req.user.id !== req.params.userId) {
@@ -52,5 +53,16 @@ export const update = async (req, res, next) => {
     res.status(200).json(rest);
   } catch (error) {
     next(error);
+  }
+};
+export const deleteUser = async (req, res, next) => {
+  if (req.user.id !== req.params.userId) {
+    return next(errorHandler(403, "Unauthorized"));
+  }
+  try {
+    await User.findByIdAndDelete(req.params.userId);
+    res.status(200).json({message: USER_DELETE_MESSAGE});
+  } catch (error) {
+    next(error)
   }
 };
