@@ -41,7 +41,6 @@ export default function SignIn() {
     } catch (error) {
       dispatch(signInFailure(error.message));
     }
-    setFormData({});
   };
   return (
     <div className="min-h-screen mt-20">
@@ -75,7 +74,7 @@ export default function SignIn() {
             <Button
               gradientDuoTone="purpleToPink"
               type="submit"
-              disabled={loading}
+              disabled={loading || formData.length == 0}
             >
               {loading ? (
                 <>
