@@ -2,7 +2,7 @@ import { Sidebar } from "flowbite-react";
 import React, { useState, useEffect } from "react";
 import { HiArrowSmRight, HiUser } from "react-icons/hi";
 import { useDispatch } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { signOutFailure, signOutSuccess } from "../redux/user/userSlice";
 
 export default function DashboardSidebar() {
