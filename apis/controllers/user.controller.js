@@ -9,6 +9,7 @@ const USERNAME_SPECIAL_CHARACTER_ERROR =
 const USERNAME_SPACE_ERROR = "Username cannot contains spaces";
 const USERNAME_UPPERCASE_ERROR = "Username must be only lower case";
 const USER_DELETE_MESSAGE = "User has been deleted";
+const USER_SIGNOUT_MESSAGE = "User has been signed out";
 
 export const update = async (req, res, next) => {
   if (req.user.id !== req.params.userId) {
@@ -61,8 +62,18 @@ export const deleteUser = async (req, res, next) => {
   }
   try {
     await User.findByIdAndDelete(req.params.userId);
-    res.status(200).json({message: USER_DELETE_MESSAGE});
+    res.status(200).json({ message: USER_DELETE_MESSAGE });
   } catch (error) {
-    next(error)
+    next(error);
+  }
+};
+export const signOut = async (req, res, next) => {
+  try {
+    res
+      .clearCookie("access_token")
+      .status(200)
+      .json({ message: USER_SIGNOUT_MESSAGE });
+  } catch (error) {
+    next(error);
   }
 };

@@ -14,6 +14,8 @@ import {
   deleteFailure,
   deleteStart,
   deleteSuccess,
+  signOutFailure,
+  signOutSuccess,
   updateFailure,
   updateStart,
   updateSuccess,
@@ -123,12 +125,28 @@ export default function DashboardProfile() {
       });
       const data = await res.json();
       if (res.status == 200) {
-        dispatch(deleteSuccess(data.message));
+        dispatch(deleteSuccess());
       } else {
         dispatch(deleteFailure(data.message));
       }
     } catch (error) {
       dispatch(deleteFailure(error.message));
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      const res = await fetch(`/api/v1/users/signout`, {
+        method: "POST",
+      });
+      const data = await res.json();
+      if (res.status == 200) {
+        dispatch(signOutSuccess());
+      } else {
+        dispatch(signOutFailure(data.message));
+      }
+    } catch (error) {
+      dispatch(signOutFailure(error.message));
     }
   };
   return (
@@ -212,7 +230,9 @@ export default function DashboardProfile() {
         >
           Delete Account
         </span>
-        <span className="cursor-pointer">Sign Out</span>
+        <span className="cursor-pointer" onClick={handleSignOut}>
+          Sign Out
+        </span>
       </div>
       {updateUserSuccess && (
         <Alert color="success" className="mt-5">
