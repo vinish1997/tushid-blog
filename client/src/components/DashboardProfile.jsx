@@ -23,7 +23,7 @@ import {
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 export default function DashboardProfile() {
-  const { currentUser, error: errorMessage } = useSelector(
+  const { currentUser, error: errorMessage , loading} = useSelector(
     (state) => state.user
   );
   const dispatch = useDispatch();
@@ -217,8 +217,9 @@ export default function DashboardProfile() {
           gradientDuoTone="purpleToPink"
           outline
           onClick={handleSubmit}
+          disabled = {loading || imageFileUploading}
         >
-          Update
+          {loading ? 'Loading ...': 'Update'}
         </Button>
       </form>
       <div className="text-red-500 flex justify-between mt-5">
