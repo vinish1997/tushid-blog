@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/user.route.js";
+import postRoute from "./routes/post.route.js";
 
 dotenv.config();
 mongoose.connect(process.env.MONGO_CONNECTION_STRING).then(() => {
@@ -21,6 +22,7 @@ app.listen(3000, () => {
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/posts", postRoute);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
