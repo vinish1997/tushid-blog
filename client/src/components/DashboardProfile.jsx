@@ -272,7 +272,7 @@ export default function DashboardProfile() {
             <h1 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
               Are you sure you want to delete your account?
             </h1>
-            <div className="">
+            <div className="flex justify-center gap-4">
               <Button color="failure" onClick={handleDeleteUser}>
                 Yes, I am sure
               </Button>
