@@ -32,9 +32,7 @@ export default function DashUsers() {
   const handleShowMore = async () => {
     const startIndex = users.length;
     try {
-      const res = await fetch(
-        `/api/v1/users?startIndex=${startIndex}`
-      );
+      const res = await fetch(`/api/v1/users?startIndex=${startIndex}`);
       const data = await res.json();
       if (res.status == 200) {
         setUsers((prev) => [...prev, ...data.users]);
@@ -47,27 +45,22 @@ export default function DashUsers() {
     }
   };
 
-  const handleDeleteUser = async ()=>{
+  const handleDeleteUser = async () => {
     setShowModal(false);
     try {
-      const res = await fetch(
-        `/api/v1/users/${deleteUserId}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const res = await fetch(`/api/v1/users/${deleteUserId}`, {
+        method: "DELETE",
+      });
       const data = await res.json();
       if (res.status === 200) {
-        setUsers((prev) =>
-          prev.filter((user) => user._id !== deleteUserId)
-        );
+        setUsers((prev) => prev.filter((user) => user._id !== deleteUserId));
       } else {
         console.log(data.message);
       }
     } catch (error) {
       console.log(error.message);
     }
-  }
+  };
 
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
@@ -92,17 +85,23 @@ export default function DashUsers() {
                     {new Date(user.createdAt).toLocaleDateString()}
                   </Table.Cell>
                   <Table.Cell>
-                      <img
-                        src={user.profilePicture}
-                        alt={user.username}
-                        className="w-10 h-10 object-cover bg-gray-500 rounded-full"
-                      />
+                    <img
+                      src={user.profilePicture}
+                      alt={user.username}
+                      className="w-10 h-10 object-cover bg-gray-500 rounded-full"
+                    />
                   </Table.Cell>
                   <Table.Cell className="font-medium text-gray-900 dark:text-white">
-                      {user.username}
+                    {user.username}
                   </Table.Cell>
                   <Table.Cell>{user.email}</Table.Cell>
-                  <Table.Cell>{user.isAdmin ? <FaCheck className="text-green-500"/>:<FaTimes className="text-red-500"/>}</Table.Cell>
+                  <Table.Cell>
+                    {user.isAdmin ? (
+                      <FaCheck className="text-green-500" />
+                    ) : (
+                      <FaTimes className="text-red-500" />
+                    )}
+                  </Table.Cell>
                   <Table.Cell>
                     <span
                       className="font-medium text-red-500 hover:underline cursor-pointer"

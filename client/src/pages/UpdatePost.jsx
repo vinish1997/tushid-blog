@@ -22,7 +22,7 @@ export default function UpdatePost() {
   const [updateError, setUpdateError] = useState(null);
   const navigate = useNavigate();
   const { postId } = useParams();
-  const {currentUser} = useSelector(state => state.user);
+  const { currentUser } = useSelector((state) => state.user);
   useEffect(() => {
     try {
       const fetchPost = async () => {
@@ -82,13 +82,16 @@ export default function UpdatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`/api/v1/posts/${formData._id}/${currentUser._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `/api/v1/posts/${formData._id}/${currentUser._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       const data = await res.json();
       if (!data.success) {
         setUpdateError(data.message);
@@ -113,13 +116,13 @@ export default function UpdatePost() {
             id="title"
             className="flex-1"
             onChange={(e) => {
-              setFormData((prev)=>({ ...prev, title: e.target.value }));
+              setFormData((prev) => ({ ...prev, title: e.target.value }));
             }}
             value={formData.title}
           />
           <Select
             onChange={(e) => {
-              setFormData((prev)=>({ ...prev, category: e.target.value }));
+              setFormData((prev) => ({ ...prev, category: e.target.value }));
             }}
             value={formData.category}
           >
@@ -173,7 +176,7 @@ export default function UpdatePost() {
           className="h-72 mb-12"
           required
           onChange={(value) => {
-            setFormData((prev)=>({ ...prev, content: value }));
+            setFormData((prev) => ({ ...prev, content: value }));
           }}
           value={formData.content}
         />
