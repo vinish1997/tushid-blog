@@ -8,3 +8,36 @@ body{
 .ql-editor{
     font-size: 1.05rem;
 }
+
+.post-content p {
+    margin-bottom: .5rem;
+
+}
+.post-content h1{
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: sans-serif;
+    margin: 1.5rem 0;
+}
+.post-content h2{
+    font-size: 1.4rem;
+    font-weight: 500;
+    font-family: sans-serif;
+    margin: 1.5rem 0;
+}
+.post-content h3{
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: sans-serif;
+    margin: 1.5rem 0;
+}
+
+.post-content a{
+    color: rgb(100, 170, 230);
+    text-decoration: none;
+}
+
+.post-content a:hover{
+    color: rgb(140, 199, 250);
+    text-decoration: underline;
+}
