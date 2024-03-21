@@ -10,7 +10,7 @@ export default function Commentsection({ postId }) {
   const [commentError, setCommentError] = useState(null);
   const [comments, setComments] = useState([]);
   const navigate = useNavigate();
-  console.log(comments)
+  console.log(comments);
   useEffect(() => {
     const getComments = async () => {
       try {
@@ -65,12 +65,14 @@ export default function Commentsection({ postId }) {
       if (res.status === 200) {
         const data = await res.json();
         setComments(
-          comments.map((comment) => 
-            comment._id === commentId ? {
-              ...comment,
-              likes: data.likes,
-              noOfLikes: data.noOfLikes,
-            } : comment
+          comments.map((comment) =>
+            comment._id === commentId
+              ? {
+                  ...comment,
+                  likes: data.likes,
+                  noOfLikes: data.noOfLikes,
+                }
+              : comment
           )
         );
       }
@@ -78,6 +80,15 @@ export default function Commentsection({ postId }) {
       console.log(error);
     }
   };
+
+  const handleEdit = async (comment, editedContent) => {
+    setComments(
+      comments.map((c) => {
+        return c._id === comment._id ? { ...c, content: editedContent } : c;
+      })
+    );
+  };
+
   return (
     <div className="max-w-2xl mx-auto w-full p-3">
       {currentUser ? (
@@ -143,7 +154,12 @@ export default function Commentsection({ postId }) {
             </div>
           </div>
           {comments.map((comment) => (
-            <Comment key={comment._id} comment={comment} onLike={handleLike} />
+            <Comment
+              key={comment._id}
+              comment={comment}
+              onLike={handleLike}
+              onEdit={handleEdit}
+            />
           ))}
         </>
       )}
