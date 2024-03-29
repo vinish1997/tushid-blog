@@ -2,6 +2,7 @@ import express from "express";
 import { verifyToken } from "../utils/verifyToken.js";
 import {
   createComment,
+  deleteComment,
   getPostComments,
   likeComment,
   updateComment,
@@ -16,5 +17,7 @@ commentRoute.get("/post/:postId", getPostComments);
 commentRoute.put("/like/:commentId", verifyToken, likeComment);
 
 commentRoute.put("/:commentId", verifyToken, updateComment);
+
+commentRoute.delete("/:commentId", verifyToken, deleteComment);
 
 export default commentRoute;
