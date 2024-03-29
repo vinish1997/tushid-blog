@@ -77,6 +77,7 @@ export const updateComment = async (req, res, next) => {
 
 export const deleteComment = async (req, res, next) => {
   try {
+    console.log(req.params.commentId + " " + req.user.id);
     const comment = await Comment.findById(req.params.commentId);
     if (!comment) {
       next(errorHandler(404, "Comment not found"));
