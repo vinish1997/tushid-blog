@@ -97,7 +97,7 @@ export default function UpdatePost() {
         setUpdateError(data.message);
       }
       if (res.status == 200) {
-        navigate(`/post/${data.slug}`);
+        navigate(`/posts/${data.slug}`);
       }
     } catch (error) {
       setUpdateError("Something went wrong...");

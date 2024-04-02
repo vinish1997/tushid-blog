@@ -13,7 +13,6 @@ export default function Commentsection({ postId }) {
   const [showModal, setShowModal] = useState(false);
   const [commentToDelete, setCommentToDelete] = useState(null);
   const navigate = useNavigate();
-  console.log(comments);
   useEffect(() => {
     const getComments = async () => {
       try {
@@ -105,7 +104,7 @@ export default function Commentsection({ postId }) {
         setShowModal(false);
       }
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   };
   return (
