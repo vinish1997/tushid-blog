@@ -3,6 +3,7 @@ import { verifyToken } from "../utils/verifyToken.js";
 import {
   createComment,
   deleteComment,
+  getComments,
   getPostComments,
   likeComment,
   updateComment,
@@ -19,5 +20,7 @@ commentRoute.put("/like/:commentId", verifyToken, likeComment);
 commentRoute.put("/:commentId", verifyToken, updateComment);
 
 commentRoute.delete("/:commentId", verifyToken, deleteComment);
+
+commentRoute.get("",verifyToken, getComments); 
 
 export default commentRoute;
