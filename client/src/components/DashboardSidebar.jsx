@@ -3,8 +3,10 @@ import React, { useState, useEffect } from "react";
 import {
   HiAnnotation,
   HiArrowSmRight,
+  HiChartPie,
   HiDocumentText,
   HiOutlineUserGroup,
+  HiPrinter,
   HiUser,
 } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,6 +44,17 @@ export default function DashboardSidebar() {
     <Sidebar className="w-full md:w-56">
       <Sidebar.Items>
         <Sidebar.ItemGroup className="flex flex-col gap-1">
+          {
+            currentUser && currentUser.isAdmin && (
+              <Sidebar.Item
+            href="/dashboard?tab=overview"
+            active={tab === "overview" || !tab}
+            icon={HiChartPie}
+          >
+            Dashboard
+          </Sidebar.Item>
+            )
+          }
           <Sidebar.Item
             href="/dashboard?tab=profile"
             active={tab === "profile"}
