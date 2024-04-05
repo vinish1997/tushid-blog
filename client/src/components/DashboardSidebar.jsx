@@ -1,6 +1,7 @@
 import { Sidebar } from "flowbite-react";
 import React, { useState, useEffect } from "react";
 import {
+  HiAnnotation,
   HiArrowSmRight,
   HiDocumentText,
   HiOutlineUserGroup,
@@ -65,6 +66,13 @@ export default function DashboardSidebar() {
                 icon={HiOutlineUserGroup}
               >
                 Users
+              </Sidebar.Item>
+              <Sidebar.Item
+                href="/dashboard?tab=comments"
+                active={tab === "comments"}
+                icon={HiAnnotation}
+              >
+                Comments
               </Sidebar.Item>
             </>
           )}
