@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import userRoutes from "./routes/user.route.js";
 import postRoute from "./routes/post.route.js";
 import commentRoute from "./routes/comment.route.js";
-import path from path;
+import path from "path";
 
 dotenv.config();
 mongoose.connect(process.env.MONGO_CONNECTION_STRING).then(() => {
