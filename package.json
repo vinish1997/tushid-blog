@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon apis/index.js",
-    "start": "node apis/index.js"
+    "start": "node apis/index.js",
+    "build":"npm install && npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",

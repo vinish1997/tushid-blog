@@ -6,11 +6,14 @@ import cookieParser from "cookie-parser";
 import userRoutes from "./routes/user.route.js";
 import postRoute from "./routes/post.route.js";
 import commentRoute from "./routes/comment.route.js";
+import path from path;
 
 dotenv.config();
 mongoose.connect(process.env.MONGO_CONNECTION_STRING).then(() => {
   console.log("mongo connected");
 });
+
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -25,6 +28,10 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/posts", postRoute);
 app.use("/api/v1/comments", commentRoute);
+app.use(express.static(path.join(__dirname,"/client/dist")));
+app.get("*",(req,res) =>{
+  res.sendFile(path.join(__dirname,"client","dist","index.html"));
+})
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
